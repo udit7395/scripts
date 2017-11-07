@@ -2,7 +2,7 @@
 
 ##For More Information:http://blog.shvetsov.com/2013/02/access-android-app-data-without-root.html
 ##Script is Written By udit7395
-##HOW TO USE: ./getDBWithoutRoot.sh <packagename>
+##HOW TO USE: ./getDataWithoutRoot.sh <packagename>
 
 #NOTE: This method doesn't work if application developer has explicitly disabled ability 
 #to backup his app by setting android:allowBackup="false" in the application manifest.
@@ -10,7 +10,7 @@
 if [ -z "$1" ]
   then
     echo "No packagename supplied"
-    echo "Input as ----> ./getDBWithoutRoot.sh <packagename>"
+    echo "Input as ----> ./getDataWithoutRoot.sh <packagename>"
 else
  	file_name=data.ab
 	path=`pwd`/$1_`(date +%d_%m_%Y_%H_%M_%S)`
