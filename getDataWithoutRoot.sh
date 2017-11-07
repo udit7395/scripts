@@ -13,7 +13,10 @@ if [ -z "$1" ]
     echo "Input as ----> ./getDBWithoutRoot.sh <packagename>"
 else
  	file_name=data.ab
-	path=`pwd`/Databases
+	path=`pwd`/$1_`(date +%d_%m_%Y_%H_%M_%S)`
+	mkdir $path
+	mkdir $path/databases
+	mkdir $path/sharedprefrences
 	mkdir backup
 	cd backup
 	echo "Do not enter any Password"
@@ -24,6 +27,7 @@ else
 	dd if=data.ab bs=1 skip=24 | python -c "import zlib,sys;sys.stdout.write(zlib.decompress(sys.stdin.read()))" | tar -xvf -
 	cd ..
 	echo $path
-	rsync --progress backup/apps/$1/db/*.db $path
+	rsync --progress backup/apps/$1/db/*.db $path/databases
+	rsync --progress backup/apps/$1/sp/*.xml $path/sharedprefrences
 	rm -rf backup
 fi
